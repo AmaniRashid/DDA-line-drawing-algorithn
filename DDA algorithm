@@ -1,0 +1,57 @@
+import matplotlib.pyplot as plt
+
+
+# input the end points
+x1 = int(input("Enter the value of x1:"))
+y1 = int(input("Enter the value of y1: "))
+x2 = int(input("Enter the value of x2: "))
+y2 = int(input("Enter the value of y2: "))
+
+
+# calculate dx, dy and m
+dx = abs(x2-x1)
+dy = abs(y2-y1)
+m = dy/dx
+
+
+# determine the number of steps
+if dx > dy:
+    steps = dx
+else:
+    steps = dy
+
+
+xcordinates =  []
+ycordinates = []
+
+# calculate the points along the path of the line
+for i in range(steps):
+    if dx > dy:
+        if x1 < x2:
+            x1 = x1 + 1
+            y1 = y1 + m
+        else:
+            x1 = x1 - 1
+            y1 = y1 - m
+    else:
+        if y1 < y2:
+            y1 = y1 + 1
+            x1 = x1 + 1/m
+        else:
+            y1 = y1 - 1
+            x1 = x1 - 1/m
+
+
+    print("x1: ",x1,"y1: ",y1 )
+    xcordinates.append(x1)
+    ycordinates.append(y1)
+
+# plot the coordinates
+plt.plot(xcordinates,ycordinates )
+
+plt.xlabel("x-Axis")
+plt.ylabel("y-Axis")
+
+plt.title("DDA algorithm")
+
+plt.show()
